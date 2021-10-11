@@ -1,0 +1,2 @@
+Splititerator:
+https://coderlessons.com/articles/java/ispolzovanie-spliterator-v-java
