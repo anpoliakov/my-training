@@ -1,0 +1,2 @@
+ћютекс и монитор:
+https://javarush.ru/quests/lectures/questmultithreading.level06.lecture06
