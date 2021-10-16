@@ -1,30 +1,49 @@
 package lesson_4;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Main {
-    public static void main(String[] args) {
+    public  int counter;
 
-    }
-}
-
-class Worker{
-    private List<Integer> list1 = new ArrayList<>();
-    private List<Integer> list2 = new ArrayList<>();
-
-    public void addToList1(){
-
+    public static void main(String[] args) throws InterruptedException {
+        Main main = new Main();
+        main.doWork();
     }
 
-    public void addToList2 (){
-
+    //доступ к синхронизированному методу в один момент времени имеет - только ОДИН поток
+    public synchronized void increment(){
+        counter++;
     }
 
-    public void mainMethod(){
-        long before = System.currentTimeMillis();
+    public void doWork() throws InterruptedException {
+        //просто описание - без старта потока
+        Thread tdOne = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for(int i = 0; i < 10000; i++){
+                    increment();
+                }
+            }
+        });
 
-        long after = System.currentTimeMillis();
-        System.out.println("Время работы: " + (after - before));
+        //просто описание - без старта потока
+        Thread tdTwo = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for(int i = 0; i < 10000; i++){
+                    increment();
+                }
+            }
+        });
+
+        //запускаем 2 потока (мгновенно, при этом main поток идёт дальше)
+        tdOne.start();
+        tdTwo.start();
+
+        //говорим main потоку (так как в нём вызываем метод join) свзяаться с
+        //этими потоками и подождать их выполнения - после чего можно идти дальше
+        tdOne.join();
+        tdTwo.join();
+
+        //посмотрим результат в counter
+        System.out.println(counter);
     }
 }
