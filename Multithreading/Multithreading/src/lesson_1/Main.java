@@ -19,7 +19,7 @@ public class Main {
         //2)Пример запуска нового потока [implements интерфейса Runnable]
         Thread thread = new Thread(new MyRunnable());
         thread.start();
-
+    
         System.out.println("Hello from main thread!");
     }
 }
