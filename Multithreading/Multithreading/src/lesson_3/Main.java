@@ -1,4 +1,4 @@
-package lesson_4;
+package lesson_3;
 
 public class Main {
     public  int counter;
@@ -9,6 +9,7 @@ public class Main {
     }
 
     //доступ к синхронизированному методу в один момент времени имеет - только ОДИН поток
+    //синхронизация при использовании этого ключевого слова - на обьекте this (обьект в котором вызван этот метод)
     public synchronized void increment(){
         counter++;
     }
