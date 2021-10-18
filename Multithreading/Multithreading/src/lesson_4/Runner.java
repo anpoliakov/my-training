@@ -21,13 +21,13 @@ class Worker{
     public void main() throws InterruptedException {
         long before = System.currentTimeMillis();
 
+        //обьявление потоков
         Thread threadOne = new Thread(new Runnable() {
             @Override
             public void run() {
                 work();
             }
         });
-
         Thread threadTwo = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -35,6 +35,7 @@ class Worker{
             }
         });
 
+        //запуск побочных потоков и ожидание их выполнения главным потоком
         threadOne.start();
         threadTwo.start();
         threadOne.join();
@@ -54,6 +55,8 @@ class Worker{
         }
     }
 
+    /* проблема этих методов в том - что один из потоков (кто успеет) забирает себе в пользование монитор
+    Worker обьекта в котором расположены эти методы, и второй поток ничего не может поделать, только ждать своей очереди */
     public synchronized void addToListOne(){
         try {
             Thread.sleep(1);
