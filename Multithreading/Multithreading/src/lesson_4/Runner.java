@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 public class Runner {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         new Worker().main();
     }
 }
@@ -18,9 +18,28 @@ class Worker{
     private List<Integer> listOne = new ArrayList<>();
     private List<Integer> listTwo = new ArrayList<>();
 
-    public void main(){
+    public void main() throws InterruptedException {
         long before = System.currentTimeMillis();
-        work();
+
+        Thread threadOne = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                work();
+            }
+        });
+
+        Thread threadTwo = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                work();
+            }
+        });
+
+        threadOne.start();
+        threadTwo.start();
+        threadOne.join();
+        threadTwo.join();
+
         long after = System.currentTimeMillis();
 
         System.out.println("Program took " + (after - before) + " ms to run");
@@ -35,7 +54,7 @@ class Worker{
         }
     }
 
-    public void addToListOne(){
+    public synchronized void addToListOne(){
         try {
             Thread.sleep(1);
         } catch (InterruptedException e) {
@@ -45,7 +64,7 @@ class Worker{
         listOne.add(random.nextInt(100));
     }
 
-    public void addToListTwo(){
+    public synchronized void addToListTwo(){
         try {
             Thread.sleep(1);
         } catch (InterruptedException e) {
