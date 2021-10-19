@@ -14,6 +14,10 @@ class Worker{
     //генерация псевдослучайных чисел
     Random random = new Random();
 
+    //обьекты для синхронизации потоков
+    Object lock1 = new Object();
+    Object lock2 = new Object();
+
     //два листа которые будем заполняем рандомными числамим
     private List<Integer> listOne = new ArrayList<>();
     private List<Integer> listTwo = new ArrayList<>();
@@ -55,25 +59,31 @@ class Worker{
         }
     }
 
-    /* проблема этих методов в том - что один из потоков (кто успеет) забирает себе в пользование монитор
-    Worker обьекта в котором расположены эти методы, и второй поток ничего не может поделать, только ждать своей очереди */
-    public synchronized void addToListOne(){
-        try {
-            Thread.sleep(1);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    /* проблема 2-х методов ниже в том - что один из потоков (кто успеет) забирает себе в пользование монитор
+    Worker обьекта в котором расположены эти методы, и второй поток ничего не может поделать, только ждать своей очереди
+    - переписали метод и создали блок синхронизации на специальном обьекте-мониторе lock1 - теперь поток может выполнять
+    соседний метод пока первый метод занят другим потоком */
+    public void addToListOne(){
+        synchronized(lock1) {
+            try {
+                Thread.sleep(1);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
-        listOne.add(random.nextInt(100));
+            listOne.add(random.nextInt(100));
+        }
     }
 
-    public synchronized void addToListTwo(){
-        try {
-            Thread.sleep(1);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    public void addToListTwo(){
+        synchronized(lock2) {
+            try {
+                Thread.sleep(1);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
-        listTwo.add(random.nextInt(100));
+            listTwo.add(random.nextInt(100));
+        }
     }
 }
