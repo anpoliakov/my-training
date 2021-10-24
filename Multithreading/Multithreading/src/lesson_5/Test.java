@@ -5,7 +5,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 /*
-* Данные работники представленные пулом потоков - не будут хвататься за одну задачу
+* Данные "работники" представленные пулом потоков (ExecutorsService) - которые не будут хвататься за одну задачу,
 * работа данных потоков из коробки уже отлична
 * */
 public class Test {

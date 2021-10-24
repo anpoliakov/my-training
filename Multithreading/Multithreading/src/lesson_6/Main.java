@@ -47,7 +47,7 @@ public class Main {
         Random random = new Random();
 
         while (true){
-            /** СПЕЦ метод класса ArrayBlockingQueue, если очередь заполнена - ЖДЁТ пока появится место что бы добавить данные*/
+            /** СПЕЦ метод класса ArrayBlockingQueue, если очередь заполнена - ЖДЁТ пока появится место что бы добавить элемент*/
             queue.put(random.nextInt(100));
         }
     }
