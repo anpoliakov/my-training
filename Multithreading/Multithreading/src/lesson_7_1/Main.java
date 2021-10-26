@@ -3,6 +3,12 @@ package lesson_7_1;
 import java.util.LinkedList;
 import java.util.Queue;
 
+/*
+* Пример работы с несинхронизированной очередью, синхронизацию производим сами
+* на низком уровне, с помощью методов wait() and notify()
+* */
+
+//просто класс для запуска 2-х методов в разных потоках
 public class Main {
     public static void main(String[] args) throws InterruptedException {
         ProducerConsumer pc = new ProducerConsumer();
@@ -38,21 +44,23 @@ public class Main {
 }
 
 class ProducerConsumer{
-    private Queue<Integer> queue = new LinkedList<>();
-    private final int LIMIT = 10;
-    private final Object lock = new Object();
+    private Queue<Integer> queue = new LinkedList<>();  //несинхрон очередь
+    private final int LIMIT = 10;                       //максимальное кол-во элемен в очереди
+    private final Object lock = new Object();           //обьект на котором производим синхронизацию
 
     public void produce() throws InterruptedException {
         int value = 0;
 
+        //зацикливавем поток в пределах этого while()
         while (true){
             synchronized (lock){
                 while (queue.size() == LIMIT){
-                    lock.wait();
+                    lock.wait(); //если сработает этот метод, в этом месте остановитсяи наш текущий поток (ожидая вызова notify() в пределах обьекта lock)
                 }
 
                 queue.offer(value++);
-                lock.notify();
+                lock.notify();//вызов метода - активирует работу другого потока который был в состоянии ожидания (в нём был вызван wait())
+                //и только после завершения работы текущего потока и освобождения lock
             }
         }
     }
@@ -66,7 +74,7 @@ class ProducerConsumer{
 
                 System.out.println(queue.poll());
                 System.out.println("Size = " + queue.size());
-                lock.notify();
+                lock.notify(); //чаще вчего данный метод прописывают в самом конце
             }
 
             Thread.sleep(500);
