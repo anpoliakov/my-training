@@ -22,6 +22,7 @@ public class Main {
         }
         executorService.shutdown();
 
+        //говорим что в главном потоке будем ждать вызова метода countDown() кол-вом = 5 (не важно из каких потоков)
         countDownLatch.await();
         System.out.println("Программа выполнена, дождалась вызова 5 раз метода countDown()");
     }
@@ -44,6 +45,7 @@ class Processor implements Runnable{
             e.printStackTrace();
         }
 
+        //вызовем метод для уменьшения значения защёлки (1 из 5 для открытия защёлки await())
         cdl.countDown();
         System.out.println("Thread - " + id);
     }
