@@ -5,7 +5,8 @@ import java.util.concurrent.locks.ReentrantLock;
 
 /*
 * Пример работы с классом ReentrantLock - аналог synchronized,
-* только с некоторыми особенностями //TODO описать позже
+* только с некоторыми особенностями + метод unlock() всегда прописываем в finally блоке!
+* так как если в методе выше произойдёт ошибка - lock останется всегда захваченным
 * */
 public class Main {
     public static void main(String[] args) throws InterruptedException {
@@ -49,14 +50,20 @@ class TestForThreads{
     public void counerThread1(){
         //сколько раз вызовем метод lock(), столько раз должны вызвать метод unlock()
         lock.lock(); //берёт в пользование монитор
-        incNumber();
-        lock.unlock(); //отпускает (другой поток может завладеть)
+        try {
+            incNumber();
+        }finally {
+            lock.unlock(); //отпускает (другой поток может завладеть)
+        }
     }
 
     public void counerThread2(){
         lock.lock();
-        incNumber();
-        lock.unlock();
+        try {
+            incNumber();
+        }finally {
+            lock.unlock();
+        }
     }
 
     public void showCounter(){
