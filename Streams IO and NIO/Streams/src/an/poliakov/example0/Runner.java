@@ -1,7 +1,6 @@
 package an.poliakov.example0;
 
 import java.io.*;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -20,7 +19,6 @@ public class Runner {
             isr = new InputStreamReader(fis, "UTF-8"); //в символьный поток передаём поток байтов - результат верная кодировка рус символов
 
             Path path = Paths.get("src/an/poliakov/test.txt");
-            path.rela
 
             while ((b = isr.read()) != -1){
                 System.out.print((char) b);
