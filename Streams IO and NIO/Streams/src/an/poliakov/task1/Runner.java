@@ -1,35 +1,26 @@
 package an.poliakov.task1;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 
 /*
-* Работаю с байтовым потоком ввода/вывода
+* Собственный фильтр файлов по определённым расшерениям
 * */
 public class Runner {
     public static void main(String[] args) {
-        FileInputStream fis = null;
-        int b;
+        File file = new File("src/an/poliakov/test_extensions");
 
-        try {
-            fis = new FileInputStream("src/an/poliakov/test.txt");
-            while ((b = fis.read()) != -1){
-                System.out.print(" - ");
-                System.out.print(b);
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }finally {
-            if(fis != null){
-                try {
-                    fis.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
+        //вывод всего по указанному пути
+        String[] allList = file.list();
+        System.out.println("Весь список:");
+        for(String s : allList){
+            System.out.println(s);
+        }
+
+        //вывод только файлов с переданным расширением (собственно сам ФИЛЬТР)
+        File[] fileOfFilter = file.listFiles(new MyFilter(new String[]{"txt"}));
+        System.out.println("Отсортированный список:");
+        for(File f : fileOfFilter){
+            System.out.println(f.getName());
         }
     }
 }
