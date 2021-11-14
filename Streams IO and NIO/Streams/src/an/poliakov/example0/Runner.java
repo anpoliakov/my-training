@@ -1,8 +1,6 @@
 package an.poliakov.example0;
 
 import java.io.*;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 public class Runner {
     public static void main(String[] args) {
@@ -17,8 +15,6 @@ public class Runner {
             символами и текстом - лучше выбрать символьный поток */
             fis = new FileInputStream("src/an/poliakov/test.txt");
             isr = new InputStreamReader(fis, "UTF-8"); //в символьный поток передаём поток байтов - результат верная кодировка рус символов
-
-            Path path = Paths.get("src/an/poliakov/test.txt");
 
             while ((b = isr.read()) != -1){
                 System.out.print((char) b);

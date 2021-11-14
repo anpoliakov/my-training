@@ -14,6 +14,7 @@ public class RunnerExampl1 {
 //            fileWriter = new FileWriter("src/an/poliakov/test.txt", true); //если true - файл не будет перезаписываться (допишет и всё)
 //            fileWriter.write(str);
 
+
             FileOutputStream fileOutputStream = new FileOutputStream("src/an/poliakov/test.txt");
             fileOutputStream.write(str.getBytes());   //если так выполнить - то файл перезапишется
 

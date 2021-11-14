@@ -3,7 +3,7 @@ package an.poliakov.task1;
 import java.io.*;
 
 /*
-* Собственный фильтр файлов по определённым расшерениям
+* Собственный фильтр файлов по определённым расшерениям в папке
 * */
 public class Runner {
     public static void main(String[] args) {
