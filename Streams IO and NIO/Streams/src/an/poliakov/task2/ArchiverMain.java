@@ -36,11 +36,13 @@ public class ArchiverMain {
         System.exit(1);
     }
 
-    private static void pack(Path archive, Path directory){
-
+    private static void pack(Path archive, Path directory) throws IOException {
+        try (AnotherArchiveWriter archiveWriter = new AnotherArchiveWriter(archive)){
+            archiveWriter.addDirectoryRecursively(directory);
+        }
     }
 
     private static void unpack(Path archive, Path directory){
-        
+
     }
 }
