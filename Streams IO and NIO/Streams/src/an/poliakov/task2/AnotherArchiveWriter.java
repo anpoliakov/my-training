@@ -15,7 +15,7 @@ public class AnotherArchiveWriter implements AutoCloseable{
     //конструктор занимается - подготовкой файла для будущего архива
     public AnotherArchiveWriter(Path archive) throws IOException {
         this.output = new DataOutputStream(Files.newOutputStream(
-                archive,5
+                archive,
                 StandardOpenOption.CREATE, //создать файл - если не существует
                 StandardOpenOption.TRUNCATE_EXISTING // если существует - опусташить
         ));
@@ -34,7 +34,8 @@ public class AnotherArchiveWriter implements AutoCloseable{
     }
 
     private void addFile(Path file, Path baseDirectory, BasicFileAttributes fileAttributes) throws IOException {
-        output.writeUTF(baseDirectory.relativize(file).toString());
+        output.writeUTF(baseDirectory.relativize(file).toString()); //имя файла (без полного имени файла)
+        output.writeLong(fileAttributes.creationTime().toMillis()); //время создания
     }
 
     @Override

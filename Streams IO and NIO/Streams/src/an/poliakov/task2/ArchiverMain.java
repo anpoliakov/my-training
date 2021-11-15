@@ -19,10 +19,10 @@ public class ArchiverMain {
 
         switch (cmd){
             case "pack":
-                pack(archive,directory);
+                //pack(archive,directory);
                 break;
             case "unpack":
-                unpack(archive,directory)
+                unpack(archive,directory);
                 break;
 
             default:
@@ -37,9 +37,9 @@ public class ArchiverMain {
     }
 
     private static void pack(Path archive, Path directory) throws IOException {
-        try (AnotherArchiveWriter archiveWriter = new AnotherArchiveWriter(archive)){
-            archiveWriter.addDirectoryRecursively(directory);
-        }
+//        try (AnotherArchiveWriter archiveWriter = new AnotherArchiveWriter(archive)){
+//            archiveWriter.addDirectoryRecursively(directory);
+//        }
     }
 
     private static void unpack(Path archive, Path directory){

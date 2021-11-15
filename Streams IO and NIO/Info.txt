@@ -1,0 +1,11 @@
+﻿Îòëè÷íûé ñàò ïî BufferedReader è BufferedWriter:
+https://javarush.ru/groups/posts/593-bufferedreader-i-bufferedwritter
+
+https://javarush.ru/groups/posts/1919-schitihvanie-s-klaviaturih--riderih
+
+Быстрое описание основных классов Байтовых и Символьных потоков (почти полное описание):
+https://www.youtube.com/watch?v=-MwbLywpV9U
+
+Про утилиту Files.walkFileTree():
+https://habr.com/ru/post/437694/
+
