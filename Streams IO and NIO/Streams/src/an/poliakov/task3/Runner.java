@@ -4,22 +4,19 @@ import java.io.*;
 import java.net.URL;
 
 /*
-* Получение картинки из интернета
+* Получение картинки из интернета (внимательно со скачиваемым расширением и записываемым)
 * */
 public class Runner {
     public static void main(String[] args) throws IOException {
-        URL url = new URL("https://ya.cc/t/DwkYACpYy9Mx5");
+        URL url = new URL("https://uprostim.com/wp-content/uploads/2021/03/image102-16.jpg");
         BufferedInputStream buffer = new BufferedInputStream(url.openStream());
 
-        File file = new File("src/an/poliakov/photo.png");
-        FileOutputStream out = new FileOutputStream(file);
+        FileOutputStream out = new FileOutputStream("src/an/poliakov/photo.jpg");
 
-        byte [] data = new byte[1024];
+        byte [] data = new byte[100];
         int code;
-        while ((code = buffer.read(data, 0 , 1024)) != -1){
+        while ((code = buffer.read(data)) != -1){
             out.write(data, 0, code);
         }
-        out.close();
-        buffer.close();
     }
 }
