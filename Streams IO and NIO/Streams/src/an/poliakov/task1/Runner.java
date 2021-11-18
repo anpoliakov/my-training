@@ -1,6 +1,8 @@
 package an.poliakov.task1;
 
 import java.io.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /*
 * Собственный фильтр файлов по определённым расшерениям в папке
@@ -8,6 +10,7 @@ import java.io.*;
 public class Runner {
     public static void main(String[] args) {
         File file = new File("src/an/poliakov/test_extensions");
+        Path path = Paths.get("src/an/poliakov/test_extensions");
 
         //вывод всего по указанному пути
         String[] allList = file.list();

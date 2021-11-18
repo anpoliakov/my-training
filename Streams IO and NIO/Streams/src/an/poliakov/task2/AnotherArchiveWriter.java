@@ -2,6 +2,7 @@ package an.poliakov.task2;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 
@@ -36,6 +37,10 @@ public class AnotherArchiveWriter implements AutoCloseable{
     private void addFile(Path file, Path baseDirectory, BasicFileAttributes fileAttributes) throws IOException {
         output.writeUTF(baseDirectory.relativize(file).toString()); //имя файла (без полного имени файла)
         output.writeLong(fileAttributes.creationTime().toMillis()); //время создания
+        output.writeLong(fileAttributes.lastModifiedTime().toMillis());
+        try (OutputStream fileContentStream = new EmbeddedOutputStream(output)){
+            Files.copy(file, fileContentStream);
+        }
     }
 
     @Override
