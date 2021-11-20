@@ -6,6 +6,7 @@ import java.nio.file.Paths;
 
 /*
 * Собственный архиватор запуск + запуск через консоль
+* 20.11.21 - остановил разработку (нет смысла)
 * */
 public class ArchiverMain {
     public static void main(String[] args) throws FileNotFoundException {
