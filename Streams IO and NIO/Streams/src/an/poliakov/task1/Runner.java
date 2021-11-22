@@ -1,26 +1,23 @@
 package an.poliakov.task1;
 
 import java.io.*;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 /*
-* Собственный фильтр файлов по определённым расшерениям в папке
+* Собственный фильтр файлов c определёнными расширениями
 * */
 public class Runner {
     public static void main(String[] args) {
-        File file = new File("src/an/poliakov/test_extensions");
-        Path path = Paths.get("src/an/poliakov/test_extensions");
+        File file = new File("src/an/poliakov/filesForTests/filesTask1");
 
-        //вывод всего по указанному пути
+        //вывод ВСЕГО по указанному пути
         String[] allList = file.list();
         System.out.println("Весь список:");
         for(String s : allList){
             System.out.println(s);
         }
 
-        //вывод только файлов с переданным расширением (собственно сам ФИЛЬТР)
-        File[] fileOfFilter = file.listFiles(new MyFilter(new String[]{"txt"}));
+        //вывод файлов с УКАЗАННЫМИ расширениями (собственно сам ФИЛЬТР)
+        File[] fileOfFilter = file.listFiles(new MyFilter(new String[]{"txt","mms"}));
         System.out.println("Отсортированный список:");
         for(File f : fileOfFilter){
             System.out.println(f.getName());

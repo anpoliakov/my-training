@@ -20,6 +20,7 @@ public class MyFilter implements FileFilter {
             return false;
         }
 
+        //получаем расширение файла (только его и ничего лишнего)
         String extension = getExtension(pathname);
         for (String e : exts){
             if(extension.equalsIgnoreCase(e)){
