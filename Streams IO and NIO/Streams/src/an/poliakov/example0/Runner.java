@@ -2,6 +2,9 @@ package an.poliakov.example0;
 
 import java.io.*;
 
+/*
+* Простой пример работы по считыванию данных из файла спомощтю символьного потока
+* */
 public class Runner {
     public static void main(String[] args) {
         FileInputStream fis = null; //байтовый поток
@@ -12,9 +15,11 @@ public class Runner {
         try {
             /* байтовый поток - получаем байт и преобразуем его к символу, для работы с
             символами и текстом - лучше выбрать символьный поток */
-            fis = new FileInputStream("src/an/poliakov/test.txt");
-            isr = new InputStreamReader(fis, "UTF-8"); //в символьный поток передаём поток байтов - результат верная кодировка рус символов
+            fis = new FileInputStream("src/an/poliakov/filesForTests/filesBasic/test.txt");
+            //в символьный поток передаём поток байтов - результат верная кодировка рус символов
+            isr = new InputStreamReader(fis, "UTF-8");
 
+            //считываем в переменную типа int - но значение будет всёравно byte
             while ((b = isr.read()) != -1){
                 System.out.print((char) b);
             }
