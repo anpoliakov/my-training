@@ -1,2 +1,0 @@
-Привет мир я пишу Java code in IDE
-And now I will read this text
