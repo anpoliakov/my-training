@@ -14,11 +14,11 @@ import an.poliakov.example1.funcInterfaces.FunctionalInterfaceOne;
  * */
 
 public class RunnerEx1 {
-    int val1 = 5; //попробуем изменить (успешно)
+    int val1 = 5; //попробуем изменить в лямбда выражении (успешно)
 
     public static void main(String[] args) {
         RunnerEx1 e = new RunnerEx1();
-        int val2 = 10; //попробуем изменить (ошибка)
+        int val2 = 10; //попробуем изменить в лямбда выражении (ошибка)
 
         //пример терминальной лямбды
         FunctionalInterfaceOne fun = str -> System.out.println(str);
