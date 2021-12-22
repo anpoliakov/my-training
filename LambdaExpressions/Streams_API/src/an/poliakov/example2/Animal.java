@@ -11,6 +11,11 @@ public class Animal {
         this.type = type;
     }
 
+    //не совсем корректно (просто пример)
+    public static boolean isStronger(Animal animal){
+        return true; //ERROR
+    }
+
     public String getName() {
         return name;
     }

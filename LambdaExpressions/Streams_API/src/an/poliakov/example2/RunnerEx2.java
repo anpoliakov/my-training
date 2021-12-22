@@ -1,5 +1,7 @@
 package an.poliakov.example2;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -8,6 +10,13 @@ import java.util.stream.Collectors;
 
 public class RunnerEx2 {
     public static void main(String[] args) {
+        try {
+            FileInputStream m = new FileInputStream("src/s");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+
         ArrayList<Animal> animals = new ArrayList();
         animals.add(new Animal("Cat", 3, TypeAnimal.PEACEFUL));
         animals.add(new Animal("Tiger", 6, TypeAnimal.DENGEROUS));
