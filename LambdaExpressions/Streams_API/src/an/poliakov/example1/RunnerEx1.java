@@ -24,7 +24,7 @@ public class RunnerEx1 {
         FunctionalInterfaceOne fun = str -> System.out.println(str);
         fun.printStr("Вывод строки из метода функционального интерфейса");
 
-        //пример нетерминальной лямбды + лямда блока
+        //пример нетерминальной лямбды и лямда блока
         FuncSummator fansum = (a, b) -> {
             //val2 = 7; - изменить переменную метода в лямбде не получится!
 
